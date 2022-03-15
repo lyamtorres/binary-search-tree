@@ -1,29 +1,41 @@
-// enregistrement noeud
-class ABR {
-    constructor(val) {
-        this.val = val;
-        this.sag = null;
-        this.sad = null;
-    }
+function Noeud(val) {
+    this.val = val;
+    this.sag = null;
+    this.sad = null;
+}
 
-    static insererABR(A, x) {
-        var displayTree = tree => console.log(JSON.stringify(tree, null, 2));
-        if (A === null) {
-            A = new ABR(x);
-            displayTree(A);
+function ABR() {
+    this.racine = null;
+    
+    this.inserer = function(val, racine = this.racine) {
+        let nouveauNoeud = new Noeud(val);
+
+        if (!this.racine) {
+            this.racine = nouveauNoeud;
         } else {
-            if (x <= A.val) {
-                this.insererABR(A.sag, x);
+            if (val === racine.val) {
+                return null;
+            } else if (val < racine.val) {
+                if (!racine.sag) {
+                    racine.sag = nouveauNoeud;
+                } else {
+                    return this.inserer(val, racine.sag);
+                }
             } else {
-                this.insererABR(A.sad, x);
+                if (!racine.sad) {
+                    racine.sad = nouveauNoeud;
+                } else {
+                    return this.inserer(val, racine.sad);
+                }
             }
         }
     }
 }
 
-var abr = null;
-ABR.insererABR(abr, 5);
+let afficherAbre = tree => console.log(JSON.stringify(tree, null, 2));
+let abr = new ABR();
 
-var displayTree = tree => console.log(JSON.stringify(tree, null, 2));
-
-displayTree(abr);
+abr.inserer(5);
+abr.inserer(3);
+abr.inserer(7);
+afficherAbre(abr);
