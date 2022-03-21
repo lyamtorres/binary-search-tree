@@ -30,12 +30,54 @@ function ABR() {
             }
         }
     }
+
+    this.creerABRComplet = function(p, val = Math.pow(2, p + 1), racine = this.racine, pos = 'racine') {
+        if (p >= 0) {
+            if (pos === 'racine') {
+                racine = new Noeud(Math.pow(2, p));
+            } else if (pos === 'gauche') {
+                racine = new Noeud(val - Math.pow(2, p));
+            } else if (pos === 'droite') {
+                racine = new Noeud(val + Math.pow(2, p));
+            }
+            
+            racine.sag = this.creerABRComplet(p - 1, racine.val, racine.sag, 'gauche');
+            racine.sad = this.creerABRComplet(p - 1, racine.val, racine.sad, 'droite');
+        }
+
+        return racine;
+    }
 }
 
 let afficherAbre = tree => console.log(JSON.stringify(tree, null, 2));
 let abr = new ABR();
 
-abr.inserer(5);
-abr.inserer(3);
-abr.inserer(7);
-afficherAbre(abr);
+let arbre = abr.creerABRComplet(3);
+afficherAbre(arbre);
+
+
+
+/* this.creerABRComplet = function(p, racine = this.racine) {
+    if (p >= 0) {
+        let noeud;
+        let val = Math.pow(2, p);
+
+        if (!this.racine) {
+            noeud = new Noeud(val);
+            this.racine = noeud;
+        } else {
+            console.log(val);
+            if (val < racine.val) {
+                noeud = new Noeud(this.racine.val - val);
+                racine.sag = noeud;
+                return this.creerABRComplet(p - 1, racine.sag);
+            } else {
+                noeud = new Noeud(this.racine.val + val);
+                racine.sad = noeud;
+                return this.creerABRComplet(p - 1, racine.sad);
+            }
+        }
+    } else {
+        return null;
+    }
+} */
