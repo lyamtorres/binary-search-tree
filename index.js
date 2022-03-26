@@ -1,3 +1,6 @@
+const { performance } = require('perf_hooks');
+const util = require('./writeFile');
+
 function Noeud(val) {
     this.val = val;
     this.sag = null;
@@ -40,6 +43,8 @@ function ABR() {
             } else if (pos === 'droite') {
                 racine = new Noeud(val + Math.pow(2, p));
             }
+
+            this.inserer(Math.pow(2, p))
             
             racine.sag = this.creerABRComplet(p - 1, racine.val, racine.sag, 'gauche');
             racine.sad = this.creerABRComplet(p - 1, racine.val, racine.sad, 'droite');
@@ -59,13 +64,13 @@ function ABR() {
 
 let afficherAbre = tree => console.log(JSON.stringify(tree, null, 2));
 
-/* let arbre = abr.creerABRComplet(3);
-afficherAbre(arbre); */
+/**
+ * calcule le temps pour créer un arbre filiforme
+ */
+ let abrF = new ABR();
 
-let abrC = new ABR();
-let abrF = new ABR();
+ start = performance.now();
+ abrF.creerABRFiliforme(2);
+ duration = performance.now() - start;
 
-abrC.creerABRComplet();
-abrF.creerABRFiliforme(2);
-
-afficherAbre(abrC);
+ util.ecrireFichier(duration);

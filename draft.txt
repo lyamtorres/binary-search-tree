@@ -1,0 +1,18 @@
+/* let arbre = abr.creerABRComplet(3);
+afficherAbre(arbre); */
+
+/* let abrC = new ABR();
+
+let arbre = abrC.creerABRComplet(3); */
+
+
+/*     this.creerABRComplet = function(p, val = Math.pow(2, p + 1), racine = this.racine) {
+        if (p >= 0) {
+            this.inserer(val, racine);
+            
+            // racine.sag = this.creerABRComplet(p - 1, racine.val - Math.pow(2, p), racine.sag);
+            // racine.sad = this.creerABRComplet(p - 1, racine.val + Math.pow(2, p), racine.sad);
+        }
+
+        return racine;
+    } */
