@@ -47,37 +47,25 @@ function ABR() {
 
         return racine;
     }
+
+    this.creerABRFiliforme = function(p) {
+        let n = Math.pow(2, p + 1) - 1;
+
+        for (let i = 1; i <= n; i++) {
+            this.inserer(i);
+        }
+    }
 }
 
 let afficherAbre = tree => console.log(JSON.stringify(tree, null, 2));
-let abr = new ABR();
 
-let arbre = abr.creerABRComplet(3);
-afficherAbre(arbre);
+/* let arbre = abr.creerABRComplet(3);
+afficherAbre(arbre); */
 
+let abrC = new ABR();
+let abrF = new ABR();
 
+abrC.creerABRComplet();
+abrF.creerABRFiliforme(2);
 
-/* this.creerABRComplet = function(p, racine = this.racine) {
-    if (p >= 0) {
-        let noeud;
-        let val = Math.pow(2, p);
-
-        if (!this.racine) {
-            noeud = new Noeud(val);
-            this.racine = noeud;
-        } else {
-            console.log(val);
-            if (val < racine.val) {
-                noeud = new Noeud(this.racine.val - val);
-                racine.sag = noeud;
-                return this.creerABRComplet(p - 1, racine.sag);
-            } else {
-                noeud = new Noeud(this.racine.val + val);
-                racine.sad = noeud;
-                return this.creerABRComplet(p - 1, racine.sad);
-            }
-        }
-    } else {
-        return null;
-    }
-} */
+afficherAbre(abrC);
