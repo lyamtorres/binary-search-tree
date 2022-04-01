@@ -33,6 +33,44 @@ function ABR() {
             }
         }
     }
+    
+    this.supprimer = function(x, A = this.racine) {
+        // vérifie que A ne soit pas un arbre vide
+        if (A) {
+            if (x < A.val) {
+                A.sag = this.supprimer(x, A.sag);
+            } else if (x > A.val) {
+                A.sad = this.supprimer(x, A.sad);
+            } else {
+                // x est égal à A.val arrivés ici
+                if (!A.sag) {
+                    return A.sad;
+                } else if (!A.sad) {
+                    return A.sag;
+                } else {
+                    // x possède 2 fils | à finir
+                    A.val = this.supprimerMax(A.sad);
+                    A.sad = this.supprimer(A.val, A.sad);
+                }
+            }
+        } 
+        return A;
+    }
+
+    this.supprimerMax = function(A) {
+        let y = A.val;
+
+        while (A.left != null) {
+            y = A.sag.val;
+            A = A.sag;
+        }
+
+        return y;
+    }
+
+    this.sum = function(A) {
+        A.val = A.val + 1;
+    }
 
     this.creerABRComplet = function(p, val = Math.pow(2, p + 1), racine = this.racine, pos = 'racine') {
         if (p >= 0) {
@@ -65,7 +103,20 @@ function ABR() {
 let afficherAbre = tree => console.log(JSON.stringify(tree, null, 2));
 
 /**
+ * calcule le temps pour créer un arbre complet
+ * ajoute le résultat dans complet.txt
+ */
+ let abrC = new ABR();
+
+ start = performance.now();
+ abrC = abrC.creerABRComplet(3);
+ duration = performance.now() - start;
+
+ util.ecrireFichier(duration, 'complet.txt');
+
+/**
  * calcule le temps pour créer un arbre filiforme
+ * ajoute le résultat dans filiforme.txt
  */
  let abrF = new ABR();
 
@@ -73,4 +124,4 @@ let afficherAbre = tree => console.log(JSON.stringify(tree, null, 2));
  abrF.creerABRFiliforme(2);
  duration = performance.now() - start;
 
- util.ecrireFichier(duration);
+ util.ecrireFichier(duration, 'filiforme.txt');

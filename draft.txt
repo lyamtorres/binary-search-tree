@@ -16,3 +16,29 @@ let arbre = abrC.creerABRComplet(3); */
 
         return racine;
     } */
+
+
+/* let abr = new ABR();
+abr.creerABRFiliforme(2);
+abr.supprimer(7);
+afficherAbre(abr); */
+
+let abr = new ABR();
+abr.inserer(5);
+abr.inserer(3);
+abr.inserer(7);
+abr.inserer(1);
+abr.inserer(9);
+abr.inserer(4);
+abr.supprimer(3);
+afficherAbre(abr);
+
+/* let x = 1;
+let abr = new ABR();
+x = abr.sum(x);
+console.log(x);  */
+
+/* let abr = new ABR();
+let noeud = new Noeud(5);
+abr.sum(noeud);
+console.log(noeud.val); */

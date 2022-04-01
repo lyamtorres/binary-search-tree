@@ -1,8 +1,8 @@
-function ecrireFichier(temps) {
+function ecrireFichier(temps, fichier) {
     const fs = require('fs');
     const content = `Temps d'exécution : ${temps} ms`;
 
-    fs.writeFile('output.txt', content, err => {
+    fs.writeFile(fichier, content, err => {
         if (err) {
             console.error(err);
             return;
