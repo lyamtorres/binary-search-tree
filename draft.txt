@@ -42,3 +42,13 @@ console.log(x);  */
 let noeud = new Noeud(5);
 abr.sum(noeud);
 console.log(noeud.val); */
+
+// test recherche
+let abr = new ABR();
+abr.inserer(5);
+abr.inserer(3);
+abr.inserer(7);
+abr.inserer(1);
+abr.inserer(9);
+abr.inserer(4);
+console.log(abr.rechercher(4));

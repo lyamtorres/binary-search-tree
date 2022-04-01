@@ -68,8 +68,16 @@ function ABR() {
         return y;
     }
 
-    this.sum = function(A) {
-        A.val = A.val + 1;
+    this.rechercher = function(x, A = this.racine) {
+        if (!A) {
+            A = null;
+        } else if (x < A.val) {
+            A = this.rechercher(x, A.sag);
+        } else if (x > A.val) {
+            A = this.rechercher(x, A.sad); 
+        }
+
+        return A; 
     }
 
     this.creerABRComplet = function(p, val = Math.pow(2, p + 1), racine = this.racine, pos = 'racine') {
