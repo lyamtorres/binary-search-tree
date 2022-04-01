@@ -106,6 +106,15 @@ function ABR() {
             this.inserer(i);
         }
     }
+
+    this.manipulerABRComplet = function(ABR, p) {
+        for (let i = Math.pow(2, p); i >= 1; i--) {
+            ABR.supprimer(i);
+            ABR.inserer(i);
+        }
+
+        return ABR;
+    }
 }
 
 let afficherAbre = tree => console.log(JSON.stringify(tree, null, 2));
@@ -114,22 +123,38 @@ let afficherAbre = tree => console.log(JSON.stringify(tree, null, 2));
  * calcule le temps pour créer un arbre complet
  * ajoute le résultat dans complet.txt
  */
- let abrC = new ABR();
+/*  let abrC = new ABR();
 
  start = performance.now();
- abrC = abrC.creerABRComplet(3);
+ abrC.racine = abrC.creerABRComplet(2);
+ afficherAbre(abrC);
  duration = performance.now() - start;
 
- util.ecrireFichier(duration, 'complet.txt');
+ util.ecrireFichier(duration, 'complet.txt'); */
 
 /**
  * calcule le temps pour créer un arbre filiforme
  * ajoute le résultat dans filiforme.txt
  */
- let abrF = new ABR();
+/*  let abrF = new ABR();
 
  start = performance.now();
  abrF.creerABRFiliforme(2);
  duration = performance.now() - start;
 
- util.ecrireFichier(duration, 'filiforme.txt');
+ util.ecrireFichier(duration, 'filiforme.txt'); */
+
+/**
+ * calcule le temps pour manipuler un arbre complet
+ * ajoute le résultat dans complet-modif.txt
+ */
+ let abrC = new ABR();
+
+ start = performance.now();
+ abrC.racine = abrC.creerABRComplet(2); // faut changer ici la valeur de n
+ afficherAbre(abrC);
+ let abrCI = abrC.manipulerABRComplet(abrC, 2); // et ici !!
+ duration = performance.now() - start;
+
+ util.ecrireFichier(duration, 'complet-modif.txt');
+ //afficherAbre(abrCI);
